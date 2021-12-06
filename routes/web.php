@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use app\Http\Controllers\HomeController as HomeController;
+use App\Models\BlogPost as BlogPost;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,20 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','HomeController@home')->name('home');
+Route::get('/contact','HomeController@contact')->name('contact');
+//Route::get('/blog-post/{id}/{welcome?}','HomeController@blogpost')->name('blog-post');
+Route::resource('/posts','PostController')->only(['index','show','create','store']);
 
-
-/*Route::get('/about', function(){
-  return view('about');
+/*
+Route::get('/contact', function(){
+    return view('contact');
 });
 */
-
-//Route::get('/','usercontroller@index');
-/*Route::get('/question','questioncontroller@index');
-Route::get('/answer','answercontroller@index');*/
-
-//Route::resource('students','usercontroller');
-/*Route::resource('question','questioncontroller');
-Route::resource('answer','answercontroller');*/
